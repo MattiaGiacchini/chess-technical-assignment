@@ -16,13 +16,15 @@ function resetClickedSquares() {
   lastClickedSquare.value = null
 }
 </script>
-
 <template>
   <div class="main-layout">
-    <div class="main-layout__header">
-      <h1 class="main-layout__title">Chessboard Click Tracker</h1>
-      <p class="main-layout__description">Click on top of any square to start</p>
-    </div>
+    <header class="main-layout__header">
+      <img src="@/assets/logo.svg" alt="Logo" class="main-layout__logo">
+      <div class="main-layout__text">
+        <h1 class="main-layout__title">Chessboard Click Tracker</h1>
+        <p class="main-layout__description">Click any square to start tracking</p>
+      </div>
+    </header>
     <div class="chess-layout">
       <div class="chess-layout__board">
         <Board :last-clicked-square="lastClickedSquare" @square-click="addClickedSquare"></Board>
@@ -33,18 +35,32 @@ function resetClickedSquares() {
 </template>
 
 <style scoped lang="scss">
-
 .main-layout {
   background-color: var(--background-color);
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   color: var(--text-color);
-  padding: var(--spacing-lg);
-  gap: var(--spacing-lg);
 
   &__header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    background-color: var(--surface-color);
+    padding: var(--spacing-md) var(--spacing-lg);
+    box-shadow: var(--strong-shadow);
+  }
+
+  &__logo {
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  &__text {
     line-height: 1;
     font-weight: var(--font-weight-light);
   }
@@ -61,7 +77,6 @@ function resetClickedSquares() {
   }
 }
 
-
 .chess-layout {
   flex: 1;
   display: flex;
@@ -71,6 +86,7 @@ function resetClickedSquares() {
   font-weight: var(--font-weight-semibold);
   overflow: hidden;
   justify-content: center;
+  padding: var(--spacing-lg);
 
   &__board {
     flex: 0 0 auto;
@@ -101,12 +117,12 @@ function resetClickedSquares() {
     &__board {
       width: 100%;
       max-width: 100%;
-      max-height: 60vh;
+      max-height: 60dvh;
     }
 
     &__sidebar {
       flex: 1;
-      width: 60vh;
+      width: 60dvh;
       max-width: 100%;
       min-width: 0;
       min-height: 0;

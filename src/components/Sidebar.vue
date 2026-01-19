@@ -22,7 +22,7 @@ watch(() => props.clickedSquares?.length, async () => {
   <div class="history-card sidebar-card card">
     <div class="history-card__header">
       <h2 class="history-card__title">Click History</h2>
-      <button class="reset-button" @click="emit('resetClickedSquares')">Reset</button>
+      <button class="button" @click="emit('resetClickedSquares')">Reset</button>
     </div>
     <div class="history-card__scrollable" ref="scrollContainer">
       <table class="history-table">
@@ -69,28 +69,8 @@ watch(() => props.clickedSquares?.length, async () => {
     flex: 1;
     overflow-y: auto;
     min-height: 0;
-    border-radius: 4px;
+    border-radius: var(--border-radius-sm);
     scroll-snap-type: y proximity;
-  }
-}
-
-.reset-button {
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--square-dark);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  cursor: pointer;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: var(--square-dark-hover);
-  }
-
-  &:active {
-    background-color: var(--square-light-hover);
   }
 }
 

@@ -71,7 +71,7 @@ const  squares: Array<{
     grid-template-columns: repeat(8, 1fr) ;
     grid-template-rows: repeat(8, 1fr);
 
-    border-radius: 4px;
+    border-radius: var(--border-radius-sm);
     overflow: hidden;
   }
 
