@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Square from '@/components/Square.vue'
+import ChessboardLabels from '@/components/ChessboardLabels.vue'
+import { RANKS, FILES } from '@/types/chess'
 import type { SquareBackground, SquareCoordinates } from '@/types/chess'
 
 const props = defineProps<{
@@ -17,15 +19,12 @@ const isSquareHighlighted = (coordinates: SquareCoordinates): boolean => {
   return props.lastClickedSquare === coordinatesNotation
 }
 
-const ranks= [8,7,6,5,4,3,2,1]
-const files= ['a','b','c','d','e','f','g','h']
-
-const  squares: Array<{
+const squares: Array<{
   coordinates: SquareCoordinates;
   colorClass: SquareBackground;
-}> = ranks.flatMap((rank, rankIndex) =>
-  files.map((file, fileIndex) => ({
-    coordinates: {file: file, rank:rank},
+}> = RANKS.flatMap((rank, rankIndex) =>
+  FILES.map((file, fileIndex) => ({
+    coordinates: {file: file, rank: rank},
     colorClass: getSquareColor(rankIndex, fileIndex)
   }))
 )
@@ -33,9 +32,7 @@ const  squares: Array<{
 
 <template>
   <div class="chessboard card">
-    <div class="chessboard__labels chessboard__labels--ranks">
-      <p v-for="rank in ranks" :key="`rank-${rank}`">{{ rank }}</p>
-    </div>
+    <ChessboardLabels type="ranks" />
 
     <div class="chessboard__grid">
       <Square
@@ -50,9 +47,7 @@ const  squares: Array<{
 
     <div class="empty-corner"></div>
 
-    <div class="chessboard__labels chessboard__labels--files">
-      <p v-for="file in files" :key="`file-${file}`">{{ file }}</p>
-    </div>
+    <ChessboardLabels type="files" />
   </div>
 </template>
 
@@ -65,32 +60,19 @@ const  squares: Array<{
   height: min(100%, 100cqw);
   aspect-ratio: 1/1;
 
+  @media (max-width: 768px) {
+    grid-template-columns: 24px 1fr;
+    grid-template-rows: 1fr 24px;
+  }
+
   &__grid {
     grid-area: 1 / 2;
     display: grid;
-    grid-template-columns: repeat(8, 1fr) ;
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
 
     border-radius: var(--border-radius-sm);
     overflow: hidden;
-  }
-
-  &__labels {
-    font-size: var(--font-size-base);
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-
-    &--ranks {
-      flex-direction: column;
-      height: 100%;
-      margin: 0 var(--spacing-lg) 0 0;
-    }
-
-    &--files {
-      width: 100%;
-      margin: var(--spacing-lg) 0 0 0;
-    }
   }
 }
 

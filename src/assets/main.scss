@@ -51,7 +51,7 @@ body {
   --font-size-base: 16px;
   --font-size-lg: 18px;
   --font-size-xl: 20px;
-  --font-size-xxl: 32px;
+  --font-size-xxl: 24px;
   --font-weight-light: 300;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -61,7 +61,7 @@ body {
     --font-size-base: 12px;
     --font-size-lg: 14px;
     --font-size-xl: 16px;
-    --font-size-xxl: 24px;
+    --font-size-xxl: 20px;
     --border-radius-lg: 8px;
 
     /* Spacing */
@@ -72,29 +72,9 @@ body {
 
 }
 
-div.card {
+.card {
   background-color: var(--surface-color);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--card-shadow);
   padding: var(--spacing-lg);
-}
-
-.button {
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--square-dark);
-  color: white;
-  border: none;
-  border-radius: var(--border-radius-sm);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
-  transition: var(--square-transition);
-
-  &:hover {
-    background-color: var(--square-dark-hover);
-  }
-
-  &:active {
-    background-color: var(--square-light-hover);
-  }
 }

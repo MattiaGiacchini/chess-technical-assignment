@@ -2,6 +2,7 @@
 import Board from '@/components/Board.vue'
 import { ref, type Ref } from 'vue'
 import Sidebar from '@/components/Sidebar.vue'
+import TheHeader from '@/components/TheHeader.vue'
 
 const clickedSquares: Ref<string[]> = ref([])
 const lastClickedSquare = ref<string | null>(null)
@@ -16,15 +17,10 @@ function resetClickedSquares() {
   lastClickedSquare.value = null
 }
 </script>
+
 <template>
   <div class="main-layout">
-    <header class="main-layout__header">
-      <img src="@/assets/logo.svg" alt="Logo" class="main-layout__logo">
-      <div class="main-layout__text">
-        <h1 class="main-layout__title">Chessboard Click Tracker</h1>
-        <p class="main-layout__description">Click any square to start tracking</p>
-      </div>
-    </header>
+    <TheHeader />
     <div class="chess-layout">
       <div class="chess-layout__board">
         <Board :last-clicked-square="lastClickedSquare" @square-click="addClickedSquare"></Board>
@@ -42,39 +38,6 @@ function resetClickedSquares() {
   flex-direction: column;
   overflow: hidden;
   color: var(--text-color);
-
-  &__header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    background-color: var(--surface-color);
-    padding: var(--spacing-md) var(--spacing-lg);
-    box-shadow: var(--strong-shadow);
-  }
-
-  &__logo {
-    height: 48px;
-    flex-shrink: 0;
-  }
-
-  &__text {
-    line-height: 1;
-    font-weight: var(--font-weight-light);
-  }
-
-  &__title {
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-xxl);
-    letter-spacing: -1px;
-  }
-
-  &__description {
-    font-size: var(--font-size-base);
-    color: var(--text-color-light);
-  }
 }
 
 .chess-layout {
