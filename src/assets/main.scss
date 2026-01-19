@@ -7,5 +7,72 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  /* Layout colors */
+  --background-color: #f0f1f5;
+  --surface-color: #fcfcfd;
+  --text-color: #111926;
+  --text-color-light: #2F466A;
+
+  /* Square colors */
+  --square-light: #f0f1f5;
+  --square-light-hover: #ced2de;
+  --square-dark: #4d7296;
+  --square-dark-hover: #678db1;
+  --square-highlighted: #ffcc00;
+  --square-highlighted-hover: #ebb000;
+
+  /* Table colors */
+  --table-header-bg: #f6f7f9;
+  --table-row-odd-bg: #fcfcfd;
+  --table-row-even-bg: #f6f7f9;
+  --table-row-hover-bg: #f0f1f5;
+  --table-border-color: #eaebf1;
+  --table-text-secondary: #4b5565;
+
+  /* Transitions */
+  --square-transition: background-color 0.3s ease;
+
+  /* Card styles */
+  --border-radius: 12px;
+  --card-shadow: 0 2px 4px #0000000d;
+
+  /* Spacing */
+  --spacing-sm: 10px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+
+  /* Typography - Desktop */
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 32px;
+  --font-weight-light: 300;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  @media (max-width: 768px) {
+    /* Mobile typography adjustments */
+    --font-size-base: 12px;
+    --font-size-lg: 14px;
+    --font-size-xl: 16px;
+    --font-size-xxl: 24px;
+    --border-radius: 8px;
+
+    /* Spacing */
+    --spacing-sm: 8px;
+    --spacing-md: 10px;
+    --spacing-lg: 12px;
+  }
+
+}
+
+div.card {
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  padding: var(--spacing-lg);
 }
