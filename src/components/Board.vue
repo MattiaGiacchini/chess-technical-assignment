@@ -63,6 +63,8 @@ const  squares: Array<{
   grid-template-rows: 1fr 38px;
   width: min(100%, 100cqh);
   height: min(100%, 100cqw);
+  //width: 100cqh;
+  //height: 100cqh;
   aspect-ratio: 1/1;
 
   &__grid {

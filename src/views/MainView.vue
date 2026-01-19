@@ -10,48 +10,82 @@ function addClickedSquare(coordinates: string) {
   clickedSquares.value.push(coordinates)
   lastClickedSquare.value = coordinates
 }
+
+function resetClickedSquares() {
+  clickedSquares.value = []
+  lastClickedSquare.value = null
+}
 </script>
 
 <template>
-  <div class="chess-layout">
-    <div class="chess-layout__board">
-      <Board  @square-click="addClickedSquare" :last-clicked-square="lastClickedSquare"></Board>
+  <div class="main-layout">
+
+    <div class="main-header">
+      <h1 class="main-title">Chessboard Click Tracker</h1>
+      <p class="main-description">Click on top of any square to start</p>
     </div>
-    <Sidebar class="chess-layout__sidebar" :clickedSquares="clickedSquares"></Sidebar>
+    <div class="chess-layout">
+      <div class="chess-layout__board">
+        <Board :last-clicked-square="lastClickedSquare" @square-click="addClickedSquare" ></Board>
+      </div>
+      <Sidebar class="chess-layout__sidebar" :clickedSquares="clickedSquares" @reset-clicked-squares="resetClickedSquares"></Sidebar>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.main-layout {
+  background-color: var(--background-color);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--text-color);
+  padding: var(--spacing-lg);
+  margin:auto;
+}
+
+.main-header {
+  margin-left: var(--spacing-lg);
+}
+
+.main-title {
+  font-weight: var(--font-weight-bold);
+}
 
 .chess-layout {
-  height: 100vh;
+  flex: 1;
   display: flex;
   flex-direction: row;
   gap: var(--spacing-lg);
-  padding: var(--spacing-lg);
   justify-content: center;
-  margin: auto;
   box-sizing: border-box;
   font-size: var(--font-size-base-lg);
   font-weight: var(--font-weight-semibold);
-
-  background-color: var(--background-color);
-  color: var(--text-color);
+  min-height: 0;
+  overflow: hidden;
 
   &__board {
-    flex:1;
-    max-width: 100cqh;
-    max-height: 100cqw;
+    flex: 0 0 auto;
     min-height: 0;
     display: flex;
     justify-content: center;
     container-type: size;
+    aspect-ratio: 1/1;
+    max-width: 70%;
   }
 
   &__sidebar {
-    width: 30%;
+    width: 25%;
+    min-width: 250px;
+    overflow: auto;
   }
 
+  @media (max-width: 920px) {
+    &__board {
+      max-width: 60%;
+    }
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -62,19 +96,17 @@ function addClickedSquare(coordinates: string) {
       flex: 0 0 auto;
       width: 100%;
       max-width: 100%;
-      max-height: none;
+      max-height: 60vh;
       aspect-ratio: 1/1;
     }
 
     &__sidebar {
       flex: 1;
       width: 100%;
+      min-width: 0;
       min-height: 0;
-      overflow: hidden;
+      overflow: auto;
     }
   }
 }
-
-
-
 </style>
