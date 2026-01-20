@@ -1,21 +1,10 @@
 <script setup lang="ts">
-import Board from '@/components/Board.vue'
-import { ref, type Ref } from 'vue'
-import Sidebar from '@/components/Sidebar.vue'
+import ChessBoard from '@/components/ChessBoard.vue'
 import TheHeader from '@/components/TheHeader.vue'
+import GameSidebar from '@/components/GameSidebar.vue'
+import { useClickHistory } from '@/composables/useClickHistory'
 
-const clickedSquares: Ref<string[]> = ref([])
-const lastClickedSquare = ref<string | null>(null)
-
-function addClickedSquare(coordinates: string) {
-  clickedSquares.value.push(coordinates)
-  lastClickedSquare.value = coordinates
-}
-
-function resetClickedSquares() {
-  clickedSquares.value = []
-  lastClickedSquare.value = null
-}
+const { addClickedSquare, resetClickHistory, clickedSquares, lastClickedSquare } = useClickHistory()
 </script>
 
 <template>
@@ -23,9 +12,9 @@ function resetClickedSquares() {
     <TheHeader />
     <div class="chess-layout">
       <div class="chess-layout__board">
-        <Board :last-clicked-square="lastClickedSquare" @square-click="addClickedSquare"></Board>
+        <ChessBoard :last-clicked-square="lastClickedSquare" @square-click="addClickedSquare"></ChessBoard>
       </div>
-      <Sidebar class="chess-layout__sidebar" :clickedSquares="clickedSquares" @reset-clicked-squares="resetClickedSquares"></Sidebar>
+      <GameSidebar class="chess-layout__sidebar" :clickedSquares="clickedSquares" @reset-clicked-squares="resetClickHistory"></GameSidebar>
     </div>
   </div>
 </template>

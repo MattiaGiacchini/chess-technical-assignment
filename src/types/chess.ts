@@ -3,7 +3,7 @@ export type SquareCoordinates = {
   rank: number
 }
 
-export type SquareBackground = "square--light" | "square--dark"
-
-export const RANKS = [8, 7, 6, 5, 4, 3, 2, 1] as const
-export const FILES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] as const
+export enum SquareBackground {
+  Light = 'square--light',
+  Dark = 'square--dark'
+}

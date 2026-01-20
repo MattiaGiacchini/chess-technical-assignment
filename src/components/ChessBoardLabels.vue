@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import { RANKS, FILES } from '@/types/chess'
+import { RANKS, FILES } from '@/constants/chessboard'
 
 const props = defineProps<{
   type: 'ranks' | 'files'
 }>()
 
-const data = {
-  ranks: RANKS,
-  files: FILES
-}
+const labels = props.type === 'ranks' ? RANKS : FILES
 </script>
 
 <template>
   <div class="chessboard__labels" :class="`chessboard__labels--${type}`">
-    <p v-for="label in data[type]" :key="`${type}-${label}`">{{ label }}</p>
+    <p v-for="label in labels" :key="`${type}-${label}`">{{ label }}</p>
   </div>
 </template>
 

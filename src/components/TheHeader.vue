@@ -3,7 +3,7 @@
 
 <template>
   <header class="header">
-    <img src="@/assets/logo.svg" alt="Logo" class="header__logo">
+    <img src="@/assets/images/logo.svg" alt="Logo" class="header__logo">
     <div class="header__text">
       <h1 class="header__title">Chessboard Click Tracker</h1>
       <p class="header__description">Click any square to start tracking</p>

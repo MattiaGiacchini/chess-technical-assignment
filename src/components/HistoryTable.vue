@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { squareToString } from '@/utils/chessUtils'
+import type { SquareCoordinates } from '@/types/chess'
+
 defineProps<{
-  clickedSquares?: string[]
+  clickedSquares: SquareCoordinates[]
 }>()
 </script>
 
@@ -19,7 +22,7 @@ defineProps<{
       class="history-table__row"
     >
       <td class="history-table__cell history-table__cell--number">{{ index + 1 }}</td>
-      <td class="history-table__cell">{{ square }}</td>
+      <td class="history-table__cell">{{ squareToString(square) }}</td>
     </tr>
     </tbody>
   </table>
@@ -73,9 +76,6 @@ defineProps<{
       background-color: var(--table-row-hover-bg);
     }
 
-    &:last-child {
-      scroll-snap-align: end;
-    }
   }
 
   &__cell {

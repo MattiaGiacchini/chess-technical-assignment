@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { SquareCoordinates } from '@/types/chess'
 
-const emit = defineEmits(['square-click'])
-
 defineProps<{
   coordinates: SquareCoordinates
   isHighlighted?: boolean
